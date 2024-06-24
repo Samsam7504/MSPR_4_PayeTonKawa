@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - rabbitmq
+
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: yourdatabase
+      MYSQL_USER: youruser
+      MYSQL_PASSWORD: yourpassword
+    ports:
+      - "3306:3306"
+
+  rabbitmq:
+    build: ./rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  kibana:
+    image: kibana:7.13.2
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: elasticsearch:7.13.2
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+volumes:
+  esdata:
