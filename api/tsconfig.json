@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   {
     "compilerOptions": {
       "module": "commonjs",
@@ -18,3 +19,18 @@
     "include": ["src/**/*"]
   }
   
+=======
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
+>>>>>>> d047b9c69119100f6b6f3abf0d9363350feda9c3
